@@ -31,8 +31,8 @@ class Person extends React.Component {
                     return <Tip />
                     // return <Info />
                 }} />
-                <Route path='/person/login' compontent={Login} />
-                <Route path='/person/register' compontent={Register} />
+                <Route path='/person/login' component={Login} />
+                <Route path='/person/register' component={Register} />
                 <Redirect from='/person' to='/person/info' />
             </Switch>
         </section>
