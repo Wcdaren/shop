@@ -16,19 +16,20 @@ class Person extends React.Component {
         }
     }
     // 验证是否登录
-    async componentWillMount() {
+    async componentDidMount() {
         let ret = await checkLogin(),
-            isLogin = parseFloat(ret.code) === 0 ? false : true
-        console.log(isLogin);
-
+            isLogin = parseFloat(ret.code) === 0 ? true : false
         this.setState({ isLogin })
     }
     render() {
         return <section>
             <Switch>
                 <Route path='/person/info' render={() => {
-                    if (this.state.isLogin) return <Tip />
-                    return <Login />
+                    console.log(this.state.isLogin);
+                    
+                    if (this.state.isLogin) {return <Info />}
+                    // return <Tip />
+                    return <Info />
                 }} />
                 <Route path='/person/login' compontent={Login} />
                 <Route path='/person/register' compontent={Register} />

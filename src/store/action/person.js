@@ -5,7 +5,7 @@ let person = {
     queryBaseInfo() {
         return {
             type: TYPES.PERSON_QUERY_BASE,
-            payload: queryInfo()
+            playload: queryInfo()
         }
     }
 };
