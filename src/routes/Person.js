@@ -28,8 +28,8 @@ class Person extends React.Component {
                     // console.log(this.state.isLogin);
                     
                     if (this.state.isLogin) {return <Info />}
-                    // return <Tip />
-                    return <Info />
+                    return <Tip />
+                    // return <Info />
                 }} />
                 <Route path='/person/login' compontent={Login} />
                 <Route path='/person/register' compontent={Register} />
