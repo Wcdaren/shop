@@ -9,16 +9,8 @@ export default function person(state = INIT_STATE, action) {
     let playload = {};
     switch (action.type) {
         case TYPES.PERSON_QUERY_BASE:
-            console.log('<<<===action==>>>');
-            console.log(action);
-            console.log('==>>>>action<<<==');
-            
             playload = action.playload
             // parseFloat(playload.code) === 0 ? state.baseInfo = playload.data : null
-            console.log('<<<===playload==>>>');
-            console.log(playload);
-            console.log('==>>>>playload<<<==');
-            
             if (parseFloat(playload.code) === 0) {
                 state.baseInfo = playload.data
             }
