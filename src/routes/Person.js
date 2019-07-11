@@ -25,7 +25,7 @@ class Person extends React.Component {
         return <section>
             <Switch>
                 <Route path='/person/info' render={() => {
-                    console.log(this.state.isLogin);
+                    // console.log(this.state.isLogin);
                     
                     if (this.state.isLogin) {return <Info />}
                     // return <Tip />
