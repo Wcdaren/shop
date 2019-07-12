@@ -15,10 +15,11 @@ export class Info extends Component {
       baseInfo: null
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
     let { baseInfo, queryBaseInfo } = this.props
     // 如果不存在 就要执行 queryBaseInfo 来获取数据
-    if (!baseInfo) queryBaseInfo()
+    if (!baseInfo) await queryBaseInfo()
+    this.setState({ baseInfo })
     // !baseInfo ? queryInfo() : null
   }
   render() {

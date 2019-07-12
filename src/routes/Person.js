@@ -13,7 +13,7 @@ class Person extends React.Component {
     // state
     this.state = {
       isLogin: false
-    }   
+    }
   }
   // 验证是否登录
   async componentDidMount() {
@@ -21,12 +21,17 @@ class Person extends React.Component {
       isLogin = parseFloat(ret.code) === 0 ? true : false
     this.setState({ isLogin })
   }
+  // 更新的时候走 updata
+  async componentWillReceiveProps() {
+    let ret = await checkLogin(),
+      isLogin = parseFloat(ret.code) === 0 ? true : false
+    this.setState({ isLogin })
+  }
+
   render() {
     return <section>
       <Switch>
         <Route path='/person/info' render={() => {
-          // console.log(this.state.isLogin);
-
           if (this.state.isLogin) { return <Info /> }
           return <Tip />
           // return <Info />
