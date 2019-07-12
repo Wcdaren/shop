@@ -1,16 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Modal } from 'antd';
+import { Link } from 'react-router-dom'
+import md5 from 'blueimp-md5'
+import { login } from '../../api/person';
+
+function loginFail() {
+  const modal = Modal.error({
+    title: '登录失败',
+    content: '请稍后重试'
+  })
+  setTimeout(() => {
+    modal.destroy()
+  }, 3000);
+}
 
 export class Login extends Component {
   handleSubmit = e => {
+    // 阻止默认行为
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    // 进行表达的验证
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        let { username, password } = values
+        password = md5(password)
+        let ret = await login({
+          name: username,
+          password: password
+        })
+        if (parseFloat(ret.code) === 0) {
+          // 跳回上一级
+          this.props.history.go(-1)
+          return
+        }
+        loginFail()
       }
-    });
-  };
+    })
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -43,7 +70,8 @@ export class Login extends Component {
             <Button type="primary" htmlType="submit" className="login-form-button">
               Log in
           </Button>
-            Or <a href="">register now!</a>
+            {/* Or <a href="">register now!</a> */}
+            Or <Link to='/person/register'>register now!</Link>
           </Form.Item>
         </Form>
       </div>
