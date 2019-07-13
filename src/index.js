@@ -15,7 +15,6 @@ import zh_CN from 'antd/lib/locale-provider/zh_CN';
 /*IMPORT CSS*/
 import './static/css/reset.min.css';
 import './static/css/common.less';
-import './static/css/person.less';
 
 /*IMPORT COMPONENT*/
 import NavTop from './component/NavTop';

@@ -7,6 +7,8 @@ import Login from './person/Login'
 import Register from "./person/Register";
 // API
 import { checkLogin } from "../api/person";
+import './static/css/person.less';
+
 class Person extends React.Component {
   constructor(props, context) {
     super(props, context)
