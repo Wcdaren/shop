@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Carousel } from 'antd';
+import { Carousel, Icon, Button } from 'antd';
+import { Link } from "react-router-dom";
 import action from "../../store/action/index";
 
 
@@ -31,7 +32,50 @@ export class List extends Component {
           </Carousel>)
           : ''
         }
-      </div>
+        <div className='courseList'>
+          <h2><Icon type='menu-fold' />
+            全部课程
+          </h2>
+          <ul>
+            <li>
+              <Link to={{
+                pathname: '/course/info',
+                serach: '?courseId=1'
+              }}>
+                <h2>sdfsdfdsfsdf</h2>
+                <div className='content'>
+                  <div className='pic'>
+                    <img src="" alt="" />
+                  </div>
+                  <div className='desc'>
+                    <p>描述</p>
+                    <p>时间</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link to={{
+                pathname: '/course/info',
+                serach: '?courseId=1'
+              }}>
+                <h2>sdfsdfdsfsdf</h2>
+                <div className='content'>
+                  <div className='pic'>
+                    <img src="" alt="" />
+                  </div>
+                  <div className='desc'>
+                    <p>描述</p>
+                    <p>时间</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          </ul>
+          <Button type='dash'>加载更多</Button>
+        </div>
+
+      </div >
     )
   }
 }
