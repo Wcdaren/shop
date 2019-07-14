@@ -1,26 +1,27 @@
 import * as TYPES from '../action-types';
-import {queryBanner, queryList, queryShopCart} from '../../api/course';
+import { queryBanner, queryList, queryShopCart } from '../../api/course';
 
 let course = {
+    // 这里这种写法是使用 redux-promise 中间件
     queryBanner() {
-        return async dispatch => {
-            let bannerData = await queryBanner();
-            dispatch({
-                type: TYPES.COURSE_QUERY_BANNER,
-                bannerData
-            });
+        return {
+            type: TYPES.COURSE_QUERY_BANNER,
+            payload: queryBanner()
         }
     },
+    // 下面这种写法 是使用 redux-thunk 中间件
     queryList(payload = {}) {
-        let {limit = 10, page = 1, type = 'all', flag = 'push'} = payload;
+        let { limit = 10, page = 1, type = 'all', flag = 'push' } = payload;
         return async dispatch => {
             let result = await queryList({
                 limit,
                 page,
                 type
             });
+            // redux-thunk 自行派发action
             dispatch({
                 type: TYPES.COURSE_QUERY_LIST,
+                // 下面action附带的数据就可以不用一定使用payload字段
                 result,
                 flag,
                 courseType: type

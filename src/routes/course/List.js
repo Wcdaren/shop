@@ -1,43 +1,39 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Carousel } from 'antd';
+import action from "../../store/action/index";
 
 
 export class List extends Component {
-  static propTypes = {
-    prop: PropTypes
+
+
+  async componentDidMount() {
+    let { queryBanner, bannerData } = this.props
+    if (!bannerData || bannerData.length === 0) queryBanner()
   }
 
+
   render() {
+    let { bannerData } = this.props
     return (
-      <div>
-        <Carousel autoplay>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-        </Carousel>,
-        mountNode,
+      <div className='listBox'>
+        {/* 如果有数据才展示
+            这里注意不能使用if,所以我们使用三元运算符
+        */}
+        {bannerData && bannerData.length !== 0
+          ? (<Carousel autoplay>
+            {bannerData.map((item, index) => {
+              let { name, pic } = item
+              return <div key={index}>
+                <img src={pic} alt={name} />
+              </div>
+            })}
+          </Carousel>)
+          : ''
+        }
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(state => ({ ...state.course }), action.course)(List)
