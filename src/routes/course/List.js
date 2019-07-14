@@ -9,13 +9,34 @@ export class List extends Component {
 
 
   async componentDidMount() {
-    let { queryBanner, bannerData } = this.props
+    let { queryBanner, bannerData, courseData, queryList } = this.props
     if (!bannerData || bannerData.length === 0) queryBanner()
+    if (courseData.data.length === 0) queryList()
   }
 
+  queryType = () => {
+    let { courseType } = this.props,
+      text = '全部课程'
+    switch (courseType) {
+      case 'react':
+        text = 'react'
+        break;
+      case 'vue':
+        text = 'vue'
+        break
+      case 'tencen':
+        text = 'rencen'
+        break
+      default:
+        break;
+    }
+    return text
+  }
 
   render() {
-    let { bannerData } = this.props
+    let { bannerData, courseType, courseData } = this.props,
+      { data } = courseData
+
     return (
       <div className='listBox'>
         {/* 如果有数据才展示
@@ -34,47 +55,37 @@ export class List extends Component {
         }
         <div className='courseList'>
           <h2><Icon type='menu-fold' />
-            全部课程
+            {this.queryType(courseType)}
           </h2>
-          <ul>
-            <li>
-              <Link to={{
-                pathname: '/course/info',
-                serach: '?courseId=1'
-              }}>
-                <h2>sdfsdfdsfsdf</h2>
-                <div className='content'>
-                  <div className='pic'>
-                    <img src="" alt="" />
-                  </div>
-                  <div className='desc'>
-                    <p>描述</p>
-                    <p>时间</p>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link to={{
-                pathname: '/course/info',
-                serach: '?courseId=1'
-              }}>
-                <h2>sdfsdfdsfsdf</h2>
-                <div className='content'>
-                  <div className='pic'>
-                    <img src="" alt="" />
-                  </div>
-                  <div className='desc'>
-                    <p>描述</p>
-                    <p>时间</p>
-                  </div>
-                </div>
-              </Link>
-            </li>
-          </ul>
-          <Button type='dash'>加载更多</Button>
+          {data && data.length !== 0
+            ? <div>
+              <ul>
+                {data.map((item, index) => {
+                  let { name, pic, dec, id, time } = item
+                  return <li>
+                    <Link to={{
+                      pathname: '/course/info',
+                      search: `?courseId=${id}`
+                    }}>
+                      <h3>{name}</h3>
+                      <div className='content'>
+                        <div className='pic'>
+                          <img src={pic} alt={name} />
+                        </div>
+                        <div className='desc'>
+                          <p>{dec}</p>
+                          <p>时间：{time}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
+                })}
+              </ul>
+              <Button type='dash'>加载更多</Button>
+            </div>
+            : '暂无数据'
+          }
         </div>
-
       </div >
     )
   }
