@@ -6,7 +6,16 @@ import action from "../../store/action/index";
 
 
 export class List extends Component {
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      isLoading: false
+    }
+  }
 
+  componentWillReceiveProps() {
+    this.setState({ isLoading: false })
+  }
 
   async componentDidMount() {
     let { queryBanner, bannerData, courseData, queryList } = this.props
@@ -31,6 +40,21 @@ export class List extends Component {
         break;
     }
     return text
+  }
+
+  loadMore = () => {
+    let { queryList, courseData, courseType } = this.props
+
+
+    // 防止重复点击
+    if (this.isRun) return
+    this.setState({ isLoading: true })
+
+    // 重新发送新的dispatch
+    queryList({
+      page: courseData.page + 1,
+      type: courseType,
+    })
   }
 
   render() {
@@ -81,7 +105,14 @@ export class List extends Component {
                   </li>
                 })}
               </ul>
-              <Button type='dash'>加载更多</Button>
+              {courseData.total <= courseData.page
+                ? '已经到底了'
+                : <Button type='dash'
+                  onClick={this.loadMore}
+                  loading={this.state.isLoading}>
+                  加载更多
+                </Button>
+              }
             </div>
             : '暂无数据'
           }
