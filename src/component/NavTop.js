@@ -28,6 +28,11 @@ class NavTop extends React.Component {
     let target = ev.target,
       tarTag = target.tagName;
     if (tarTag === 'LI') {
+      this.props.queryList({
+        page: 1,
+        type: target.getAttribute('type'),
+        flag: 'replace'
+      })
       this.setState({ in: false });
     }
   };
@@ -54,10 +59,10 @@ class NavTop extends React.Component {
               ...transitionStyles[state],
               display: this.state.in ? 'block' : 'none'
             }} onClick={this.handleClick}>
-              <li >全部课程</li>
-              <li >REACT课程</li>
-              <li >VUE课程</li>
-              <li >小程序课程</li>
+              <li type='all'>全部课程</li>
+              <li type='react'>REACT课程</li>
+              <li type='vue'>VUE课程</li>
+              <li type='xiaochengxu'>小程序课程</li>
             </ul>;
           }}
         </Transition>
@@ -66,4 +71,4 @@ class NavTop extends React.Component {
   }
 }
 
-export default withRouter(connect()(NavTop));
+export default withRouter(connect(null, action.course)(NavTop));
