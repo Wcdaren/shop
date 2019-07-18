@@ -16,11 +16,11 @@ class NavBottom extends React.Component {
             </NavLink>
             <NavLink to='/mycourse'>
                 <Icon type='solution' />
-                <span>我的课程</span>
+                <span>购物车</span>
             </NavLink>
             <NavLink to='/person'>
                 <Icon type='user' />
-                <span>个人中心</span>
+                <span>个人</span>
             </NavLink>
         </footer>;
     }

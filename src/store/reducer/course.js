@@ -8,7 +8,11 @@ let INIT_STATE = {
     page: 1,
     data: []
   },
-  courseType: 'all'
+  courseType: 'all',
+  shopCar: {
+    uppay: [],
+    pay: [],
+  }
 }
 export default function course(state = INIT_STATE, action) {
   state = JSON.parse(JSON.stringify(state))
@@ -31,6 +35,16 @@ export default function course(state = INIT_STATE, action) {
           flag === 'push' ?
             state.courseData.data.concat(result.data)
             : result.data
+      }
+      break
+    case TYPES.COURSE_UNPAY:
+      if (parseFloat(action.result.code) === 0) {
+        state.shopCar.unpay = action.result.data
+      }
+      break
+    case TYPES.COURSE_PAY:
+      if (parseFloat(action.result.code) === 0) {
+        state.shopCar.pay = action.result.data
       }
       break
   }

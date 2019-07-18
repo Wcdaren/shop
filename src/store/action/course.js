@@ -1,5 +1,5 @@
 import * as TYPES from '../action-types';
-import { queryBanner, queryList, queryShopCart } from '../../api/course';
+import { queryBanner, queryList, queryShopCar } from '../../api/course';
 
 let course = {
   // 这里这种写法是使用 redux-promise 中间件
@@ -30,7 +30,7 @@ let course = {
   },
   queryUnpay() {
     return async dispatch => {
-      let result = await queryShopCart(0);
+      let result = await queryShopCar(0);
       dispatch({
         type: TYPES.COURSE_UNPAY,
         result
@@ -39,7 +39,7 @@ let course = {
   },
   queryPay() {
     return async dispatch => {
-      let result = await queryShopCart(1);
+      let result = await queryShopCar(1);
       dispatch({
         type: TYPES.COURSE_PAY,
         result

@@ -22,21 +22,21 @@ export function queryInfo(courseID) {
 }
 
 //=>加入购物车
-export function addShopCart(courseID) {
+export function addShopCar(courseID) {
   return axios.post('/store/add', {
     courseID
   });
 }
 
 //=>从购物车移除
-export function removeShopCart(courseID) {
+export function removeShopCar(courseID) {
   return axios.post('/store/remove', {
     courseID
   });
 }
 
 //=>从服务器获取最新的购物车信息（已支付和未支付）
-export function queryShopCart(state = 0) {
+export function queryShopCar(state = 0) {
   return axios.get('/store/info', {
     params: {
       state
