@@ -1,7 +1,7 @@
 
 /*BASE*/
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
+import { render } from 'react-dom';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 /*REDUX STORE*/

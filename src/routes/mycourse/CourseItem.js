@@ -4,10 +4,6 @@ import {Link} from 'react-router-dom';
 import action from '../../store/action/index';
 
 class CourseItem extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-
     render() {
         let {id, name, pic, dec, price, check} = this.props.item;
         return <li>

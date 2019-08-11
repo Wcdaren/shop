@@ -22,6 +22,10 @@ class NavTop extends React.Component {
     this.state = {
       in: false
     };
+
+    //=>每一次页面刷新，REDUX中存储的购物车信息都会消失，所以我们需要在页面刷新的时候，执行一个DISPATCH派发，把服务器中存储的购物信息存放到REDUX中（NAV是每一次页面刷新，不管在哪一个路由下都会执行的组件）
+    this.props.queryUnpay();
+    this.props.queryPay();
   }
 
   handleClick = ev => {
@@ -31,8 +35,8 @@ class NavTop extends React.Component {
       this.props.queryList({
         page: 1,
         type: target.getAttribute('type'),
-        flag: 'replace'
-      })
+        flag: 'replace'//=>切换类别是替换REDUX容器中的状态信息
+      });
       this.setState({ in: false });
     }
   };
@@ -42,7 +46,7 @@ class NavTop extends React.Component {
       {/*首页的导航*/}
       <div className='homeBox'>
         <div className='baseBox'>
-          <h1 className='logo'>wcdaren</h1>
+          <h1 className='logo'>珠峰培训</h1>
 
           <Icon className='icon' type='bars' style={{
             fontSize: '.6rem'
@@ -59,10 +63,10 @@ class NavTop extends React.Component {
               ...transitionStyles[state],
               display: this.state.in ? 'block' : 'none'
             }} onClick={this.handleClick}>
-              <li type='all'>全部课程</li>
-              <li type='react'>REACT课程</li>
-              <li type='vue'>VUE课程</li>
-              <li type='xiaochengxu'>小程序课程</li>
+              <li type="all">全部课程</li>
+              <li type="react">REACT课程</li>
+              <li type="vue">VUE课程</li>
+              <li type="xiaochengxu">小程序课程</li>
             </ul>;
           }}
         </Transition>

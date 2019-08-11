@@ -47,6 +47,8 @@ export default function course(state = INIT_STATE, action) {
         state.shopCar.pay = action.result.data
       }
       break
+    default:
+      break
   }
   return state
 }

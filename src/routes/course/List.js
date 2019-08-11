@@ -86,7 +86,7 @@ export class List extends Component {
               <ul>
                 {data.map((item, index) => {
                   let { name, pic, dec, id, time } = item
-                  return <li>
+                  return <li key={index}>
                     <Link to={{
                       pathname: '/course/info',
                       search: `?courseId=${id}`

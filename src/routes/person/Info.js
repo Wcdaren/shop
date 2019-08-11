@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Button } from 'antd';
 import { exitLogin } from '../../api/person';
 import { withRouter } from 'react-router-dom'
-import { queryInfo } from '../../api/course';
 import action from '../../store/action/index'
 
 

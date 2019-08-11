@@ -4,10 +4,6 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { Icon } from 'antd';
 
 class NavBottom extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-
     render() {
         return <footer className='footerNavBox'>
             <NavLink to='/course'>

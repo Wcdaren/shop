@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Icon, Button, Input, Row, Col, Modal } from 'antd';
+import { Form, Button, Input, Modal } from 'antd';
 import md5 from 'blueimp-md5';
 import { register } from '../../api/person';
 import action from '../../store/action/index';
@@ -16,10 +16,6 @@ function loginFail() {
 }
 
 class Register extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   handleSubmit = ev => {
     ev.preventDefault();
     this.props.form.validateFieldsAndScroll(async (err, values) => {
