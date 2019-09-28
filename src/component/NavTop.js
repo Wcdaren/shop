@@ -46,7 +46,7 @@ class NavTop extends React.Component {
       {/*首页的导航*/}
       <div className='homeBox'>
         <div className='baseBox'>
-          <h1 className='logo'>珠峰培训</h1>
+          <h1 className='logo'>wcdaren</h1>
 
           <Icon className='icon' type='bars' style={{
             fontSize: '.6rem'
