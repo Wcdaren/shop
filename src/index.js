@@ -25,25 +25,25 @@ import Person from './routes/Person';
 
 /*RENDER*/
 render(<Provider store={store}>
-    <HashRouter>
-        <LocaleProvider locale={zh_CN}>
-            <div>
-                {/*HEADER*/}
-                <NavTop />
+  <HashRouter>
+    <LocaleProvider locale={zh_CN}>
+      <div>
+        {/*HEADER*/}
+        <NavTop />
 
-                {/*MAIN=>ROUTE*/}
-                <main className='container'>
-                    <Switch>
-                        <Route path='/course' component={Home} />
-                        <Route path='/mycourse' component={Mycourse} />
-                        <Route path='/person' component={Person} />
-                        <Redirect to='/course' />
-                    </Switch>
-                </main>
+        {/*MAIN=>ROUTE*/}
+        <main className='container'>
+          <Switch>
+            <Route path='/course' component={Home} />
+            <Route path='/mycourse' component={Mycourse} />
+            <Route path='/person' component={Person} />
+            <Redirect to='/course' />
+          </Switch>
+        </main>
 
-                {/*FOOTER*/}
-                <NavBottom />
-            </div>
-        </LocaleProvider>
-    </HashRouter>
+        {/*FOOTER*/}
+        <NavBottom />
+      </div>
+    </LocaleProvider>
+  </HashRouter>
 </Provider>, document.getElementById('root'));
