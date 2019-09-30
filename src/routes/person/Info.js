@@ -51,4 +51,4 @@ export class Info extends Component {
 }
 
 // 把属性和方法都挂在到info上
-export default withRouter(connect(state => ({ ...state.person }), action.person)(Info))
+export default withRouter(connect(state => state.person, action.person)(Info))
