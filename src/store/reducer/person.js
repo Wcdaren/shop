@@ -1,7 +1,8 @@
 import * as TYPES from '../action-types';
 
 let INIT_STATE = {
-  baseInfo: null
+  baseInfo: null,
+  isLogin: null
 };
 export default function person(state = INIT_STATE, action) {
   state = JSON.parse(JSON.stringify(state));
@@ -13,6 +14,12 @@ export default function person(state = INIT_STATE, action) {
       // parseFloat(playload.code) === 0 ? state.baseInfo = playload.data : null
       if (parseFloat(payload.code) === 0) {
         state.baseInfo = payload.data
+      }
+      break
+    case TYPES.PERSON_CHECK_LOGIN:
+      payload = action.payload
+      if (parseFloat(payload.code) === 0) {
+        state.isLogin = true
       }
       break
     default:
