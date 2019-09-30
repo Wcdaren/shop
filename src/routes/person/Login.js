@@ -33,6 +33,8 @@ export class Login extends Component {
         if (parseFloat(ret.code) === 0) {
           // 更新最新值
           this.props.queryBaseInfo()
+          // 更新登录状态
+          this.props.checkLogin()
           // 跳回上一级
           this.props.history.go(-1)
           return
