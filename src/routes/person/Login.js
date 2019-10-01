@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button, Modal } from 'antd';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import md5 from 'blueimp-md5'
 import { login } from '../../api/person';
 import action from '../../store/action';
@@ -17,6 +17,7 @@ function loginFail() {
 }
 
 export class Login extends Component {
+
   handleSubmit = e => {
     // 阻止默认行为
     e.preventDefault();
@@ -30,22 +31,23 @@ export class Login extends Component {
           name: username,
           password: password
         })
+        debugger
         if (parseFloat(ret.code) === 0) {
           // 更新最新值
           this.props.queryBaseInfo()
           // 更新登录状态
           this.props.checkLogin()
-          // 跳回上一级
-          this.props.history.go(-1)
-          return
         }
-        loginFail()
+        else loginFail()
       }
     })
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    let { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { isLogin } = this.props
+    if (isLogin) return <Redirect to={from} />;
 
     return (
       <div className="personLoginBox">
@@ -85,4 +87,6 @@ export class Login extends Component {
 }
 
 
-export default Form.create()(connect(null, action.person)(Login));
+// export default Form.create()(connect(state => state.person, action.person)(Login));
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
+export default connect(state => state.person, action.person)(WrappedNormalLoginForm)

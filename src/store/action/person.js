@@ -1,5 +1,5 @@
 import * as TYPES from '../action-types';
-import { queryInfo, checkLogin } from '../../api/person';
+import { queryInfo, checkLogin, exitLogin } from '../../api/person';
 
 let person = {
   queryBaseInfo() {
@@ -12,6 +12,12 @@ let person = {
     return {
       type: TYPES.PERSON_CHECK_LOGIN,
       payload: checkLogin()
+    }
+  },
+  exitLogin() {
+    return {
+      type: TYPES.PERSON_EXIT_LOGIN,
+      payload: exitLogin()
     }
   }
 };

@@ -22,6 +22,12 @@ export default function person(state = INIT_STATE, action) {
         state.isLogin = true
       }
       break
+    case TYPES.PERSON_EXIT_LOGIN:
+      payload = action.payload
+      if (parseFloat(payload.code) === 0) {
+        state.isLogin = false
+      }
+      break
     default:
       break
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'antd';
-import { exitLogin } from '../../api/person';
+// import { exitLogin } from '../../api/person';
 import { withRouter } from 'react-router-dom'
 import action from '../../store/action/index'
 
@@ -22,7 +22,7 @@ export class Info extends Component {
     // !baseInfo ? queryInfo() : null
   }
   render() {
-    let { baseInfo } = this.props
+    let { baseInfo, exitLogin } = this.props
     // 如果没有数据 直接为空
     if (!baseInfo) return ''
     let { name, email, phone } = baseInfo
@@ -41,8 +41,8 @@ export class Info extends Component {
       </p>
 
       <Button type='danger'
-        onClick={async (ev) => {
-          await exitLogin()
+        onClick={(ev) => {
+          exitLogin()
           this.props.history.push('/person')
         }}
       >退出登录</Button>
